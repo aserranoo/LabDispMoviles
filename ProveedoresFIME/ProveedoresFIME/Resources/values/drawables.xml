@@ -1,0 +1,6 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+  <!--<item name="menu_p" type="drawable">@android:drawable/ic_menu_person_add</item>
+  <item name="menu_c" type="drawable">@android:drawable/ic_menu_cotizaciones</item>
+  <item name="menu_a" type="drawable">@android:drawable/ic_menu_articulos</item>-->
+  <item name="ic_add_black" type="drawable">@drawable/ic_add_black</item>
+</resources>

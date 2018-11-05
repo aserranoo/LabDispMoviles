@@ -13,8 +13,8 @@ using Android.Widget;
 namespace ProveedoresFIME.Adapters {
     class ProveedorViewHolder :Java.Lang.Object{
         public TextView Nombre { get; set; }
-        public TextView Contacto { get; set; }
+        public TextView Telefono { get; set; }
 
-        public TextView Email{ get; set; }
+        public TextView Correo{ get; set; }
     }
 }

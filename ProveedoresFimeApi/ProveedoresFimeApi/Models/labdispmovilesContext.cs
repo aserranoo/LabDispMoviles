@@ -16,7 +16,9 @@ namespace ProveedoresFimeApi.Models
         }
 
         public virtual DbSet<Articulos> Articulos { get; set; }
+        public virtual DbSet<Cotizaciones> Cotizaciones { get; set; }
         public virtual DbSet<Proveedores> Proveedores { get; set; }
+        public virtual DbSet<SolicitudArticulos> SolicitudArticulos { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -34,6 +36,26 @@ namespace ProveedoresFimeApi.Models
                 entity.HasKey(e => e.ArticuloId);
 
                 entity.Property(e => e.Descripcion).HasMaxLength(50);
+
+                entity.HasOne(d => d.Proveedor)
+                    .WithMany(p => p.Articulos)
+                    .HasForeignKey(d => d.ProveedorId)
+                    .HasConstraintName("FK_Articulos_Proveedores");
+            });
+
+            modelBuilder.Entity<Cotizaciones>(entity =>
+            {
+                entity.HasKey(e => e.CotizacionId);
+
+                entity.Property(e => e.CotizacionId).ValueGeneratedNever();
+
+                entity.Property(e => e.Fecha).HasColumnType("datetime");
+
+                entity.HasOne(d => d.Proveedor)
+                    .WithMany(p => p.Cotizaciones)
+                    .HasForeignKey(d => d.ProveedorId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Cotizaciones_Proveedores");
             });
 
             modelBuilder.Entity<Proveedores>(entity =>
@@ -51,6 +73,31 @@ namespace ProveedoresFimeApi.Models
                     .HasMaxLength(13);
 
                 entity.Property(e => e.Telefono).HasMaxLength(10);
+            });
+
+            modelBuilder.Entity<SolicitudArticulos>(entity =>
+            {
+                entity.HasKey(e => e.TranId);
+
+                entity.Property(e => e.TranId).ValueGeneratedNever();
+
+                entity.HasOne(d => d.Articulo)
+                    .WithMany(p => p.SolicitudArticulos)
+                    .HasForeignKey(d => d.ArticuloId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Table_1_Articulos");
+
+                entity.HasOne(d => d.Cotizacion)
+                    .WithMany(p => p.SolicitudArticulos)
+                    .HasForeignKey(d => d.CotizacionId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Table_1_Cotizaciones");
+
+                entity.HasOne(d => d.Proveedor)
+                    .WithMany(p => p.SolicitudArticulos)
+                    .HasForeignKey(d => d.ProveedorId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Table_1_Proveedores");
             });
         }
     }

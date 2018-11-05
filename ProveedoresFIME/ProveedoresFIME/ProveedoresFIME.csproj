@@ -51,10 +51,16 @@
     <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
     <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
+    <AotAssemblies>false</AotAssemblies>
+    <EnableLLVM>false</EnableLLVM>
+    <BundleAssemblies>false</BundleAssemblies>
+    <AndroidLinkSkip>
+    </AndroidLinkSkip>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android.Export" />
     <Reference Include="System" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
@@ -62,12 +68,16 @@
   <ItemGroup>
     <Compile Include="Adapters\ListViewCustomAdapter.cs" />
     <Compile Include="Adapters\ProveedorViewHolder.cs" />
-    <Compile Include="MainActivity.cs" />
-    <Compile Include="models\Parceables\GenericParcelableCreator.cs" />
-    <Compile Include="models\Proveedor.cs" />
-    <Compile Include="models\ProveedorParcelable.cs" />
-    <Compile Include="Resources\layout\proveedores_add.cs" />
-    <Compile Include="Resources\layout\proveedores_main.cs" />
+    <Compile Include="Data\IArticulosService.cs" />
+    <Compile Include="Data\IProveedorService.cs" />
+    <Compile Include="Data\NetworkService.cs" />
+    <Compile Include="Activities\MainActivity.cs" />
+    <Compile Include="Models\Articulo.cs" />
+    <Compile Include="Models\Parceables\GenericParcelableCreator.cs" />
+    <Compile Include="Models\Proveedor.cs" />
+    <Compile Include="Models\ProveedorParcelable.cs" />
+    <Compile Include="Activities\proveedores_add.cs" />
+    <Compile Include="Activities\proveedores_main.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -126,6 +136,9 @@
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json">
       <Version>11.0.2</Version>
+    </PackageReference>
+    <PackageReference Include="Refit">
+      <Version>4.6.48</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.Design" Version="27.0.2.1" />
   </ItemGroup>
@@ -190,6 +203,7 @@
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
     Other similar extension points exist, see Microsoft.Common.targets.

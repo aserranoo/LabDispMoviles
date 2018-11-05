@@ -14,9 +14,9 @@
         android:layout_height="wrap_content"  
         android:paddingLeft="5dp" />  
     <TextView  
-        android:id="@+id/contactoTextView"  
+        android:id="@+id/telefonoTextView"  
         android:layout_below="@id/nombreTextView"  
-        android:text="Contacto"  
+        android:text="Telefono"  
         android:textAppearance="?android:attr/textAppearanceSmall"  
         android:layout_width="wrap_content"  
         android:layout_height="wrap_content"  

@@ -55,7 +55,7 @@ namespace ProveedoresFIME.Adapters {
 
                 //var photo = view.FindViewById<ImageView>(Resource.Id.photoImageView);
                 holder.Nombre = view.FindViewById<TextView>(Resource.Id.nombreTextView);
-                holder.Contacto = view.FindViewById<TextView>(Resource.Id.contactoTextView);
+                holder.Telefono = view.FindViewById<TextView>(Resource.Id.telefonoTextView);
 
                 view.Tag=holder;
             } else {
@@ -65,7 +65,7 @@ namespace ProveedoresFIME.Adapters {
             var tempServiceItem = Proveedores[position];
             //var tempServiceItem = new ServiceItem();
             holder.Nombre.Text=tempServiceItem.Nombre;
-            holder.Contacto.Text=tempServiceItem.Contacto;
+            holder.Telefono.Text=tempServiceItem.Telefono;
             //holder.Price.Text=String.Format("{0:C}", tempServiceItem.Price);
 
             //holder..Click+=(object sender, EventArgs e)=&gt;

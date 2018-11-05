@@ -24,8 +24,8 @@ namespace ProveedoresFIME.models {
         public ProveedorParcelable(Parcel parcel) {
             Proveedor=new Proveedor {
                 Nombre=parcel.ReadString(),
-                Contacto=parcel.ReadString(),
-                Email=parcel.ReadString()
+                Telefono=parcel.ReadString(),
+                Correo=parcel.ReadString()
             };
         }
         [ExportField("CREATOR")]
@@ -40,8 +40,8 @@ namespace ProveedoresFIME.models {
 
         public void WriteToParcel(Parcel dest, [GeneratedEnum] ParcelableWriteFlags flags) {
             dest.WriteString(Proveedor.Nombre);
-            dest.WriteString(Proveedor.Contacto);
-            dest.WriteString(Proveedor.Email);
+            dest.WriteString(Proveedor.Telefono);
+            dest.WriteString(Proveedor.Correo);
         }
 
         public new void Dispose() {

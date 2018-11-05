@@ -3,17 +3,16 @@ using System.Collections.Generic;
 
 namespace ProveedoresFimeApi.Models
 {
-    public partial class Articulos
+    public partial class Cotizaciones
     {
-        public Articulos()
+        public Cotizaciones()
         {
             SolicitudArticulos = new HashSet<SolicitudArticulos>();
         }
 
-        public int ArticuloId { get; set; }
-        public int? ProveedorId { get; set; }
-        public string Descripcion { get; set; }
-        public bool? Status { get; set; }
+        public int CotizacionId { get; set; }
+        public int ProveedorId { get; set; }
+        public DateTime Fecha { get; set; }
 
         public Proveedores Proveedor { get; set; }
         public ICollection<SolicitudArticulos> SolicitudArticulos { get; set; }

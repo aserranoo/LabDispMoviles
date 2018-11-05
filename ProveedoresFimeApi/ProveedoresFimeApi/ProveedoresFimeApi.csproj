@@ -17,12 +17,10 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>EntityFramework</HintPath>
-    </Reference>
     <Reference Include="System">
       <HintPath>System</HintPath>
     </Reference>

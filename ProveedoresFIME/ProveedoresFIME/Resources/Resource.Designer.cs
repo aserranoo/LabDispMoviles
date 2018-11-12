@@ -2466,8 +2466,8 @@ namespace ProveedoresFIME
 			// aapt resource value: 0x7f08005c
 			public const int action_mode_close_button = 2131230812;
 			
-			// aapt resource value: 0x7f0800d0
-			public const int action_settings = 2131230928;
+			// aapt resource value: 0x7f0800d5
+			public const int action_settings = 2131230933;
 			
 			// aapt resource value: 0x7f0800b0
 			public const int action_text = 2131230896;
@@ -2514,8 +2514,14 @@ namespace ProveedoresFIME
 			// aapt resource value: 0x7f08003d
 			public const int bottom = 2131230781;
 			
+			// aapt resource value: 0x7f0800cf
+			public const int btnActualizar = 2131230927;
+			
 			// aapt resource value: 0x7f08009c
 			public const int btnAgregarArticulo = 2131230876;
+			
+			// aapt resource value: 0x7f0800ce
+			public const int btnBorrar = 2131230926;
 			
 			// aapt resource value: 0x7f080095
 			public const int btnGuardarArticulo = 2131230869;
@@ -2529,8 +2535,14 @@ namespace ProveedoresFIME
 			// aapt resource value: 0x7f0800b2
 			public const int cancel_action = 2131230898;
 			
+			// aapt resource value: 0x7f0800cc
+			public const int cantidad = 2131230924;
+			
 			// aapt resource value: 0x7f08009b
 			public const int cantidadSolicitada = 2131230875;
+			
+			// aapt resource value: 0x7f0800cd
+			public const int cantidadValue = 2131230925;
 			
 			// aapt resource value: 0x7f080045
 			public const int center = 2131230789;
@@ -2721,14 +2733,14 @@ namespace ProveedoresFIME
 			// aapt resource value: 0x7f080098
 			public const int lvExp = 2131230872;
 			
-			// aapt resource value: 0x7f0800cd
-			public const int masked = 2131230925;
+			// aapt resource value: 0x7f0800d2
+			public const int masked = 2131230930;
 			
 			// aapt resource value: 0x7f0800b4
 			public const int media_actions = 2131230900;
 			
-			// aapt resource value: 0x7f0800cb
-			public const int message = 2131230923;
+			// aapt resource value: 0x7f0800d0
+			public const int message = 2131230928;
 			
 			// aapt resource value: 0x7f080031
 			public const int middle = 2131230769;
@@ -2739,11 +2751,11 @@ namespace ProveedoresFIME
 			// aapt resource value: 0x7f080028
 			public const int multiply = 2131230760;
 			
-			// aapt resource value: 0x7f0800cf
-			public const int nav_articulos = 2131230927;
+			// aapt resource value: 0x7f0800d4
+			public const int nav_articulos = 2131230932;
 			
-			// aapt resource value: 0x7f0800ce
-			public const int nav_person_add = 2131230926;
+			// aapt resource value: 0x7f0800d3
+			public const int nav_person_add = 2131230931;
 			
 			// aapt resource value: 0x7f08008c
 			public const int nav_view = 2131230860;
@@ -2753,6 +2765,9 @@ namespace ProveedoresFIME
 			
 			// aapt resource value: 0x7f08003b
 			public const int never = 2131230779;
+			
+			// aapt resource value: 0x7f0800cb
+			public const int nombreArticulo = 2131230923;
 			
 			// aapt resource value: 0x7f0800c9
 			public const int nombreTextView = 2131230921;
@@ -3015,8 +3030,8 @@ namespace ProveedoresFIME
 			// aapt resource value: 0x7f080016
 			public const int view_offset_helper = 2131230742;
 			
-			// aapt resource value: 0x7f0800cc
-			public const int visible = 2131230924;
+			// aapt resource value: 0x7f0800d1
+			public const int visible = 2131230929;
 			
 			// aapt resource value: 0x7f08003c
 			public const int withText = 2131230780;
@@ -3294,10 +3309,13 @@ namespace ProveedoresFIME
 			public const int select_dialog_singlechoice_material = 2130968646;
 			
 			// aapt resource value: 0x7f040047
-			public const int support_simple_spinner_dropdown_item = 2130968647;
+			public const int solicitudCotizacion = 2130968647;
 			
 			// aapt resource value: 0x7f040048
-			public const int tooltip = 2130968648;
+			public const int support_simple_spinner_dropdown_item = 2130968648;
+			
+			// aapt resource value: 0x7f040049
+			public const int tooltip = 2130968649;
 			
 			static Layout()
 			{

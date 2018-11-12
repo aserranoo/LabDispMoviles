@@ -8,8 +8,10 @@ using Android.Content;
 using Android.OS;
 using Android.Runtime;
 using Android.Support.V7.App;
+using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
+using ProveedoresFIME.Adapters;
 using ProveedoresFIME.Data;
 using ProveedoresFIME.Models;
 
@@ -24,9 +26,14 @@ namespace ProveedoresFIME.Resources.layout {
         ArrayAdapter<string> spinnerAdapterArticulo;
         Spinner spinnerProveedor;
         Spinner spinnerArticulo;
+        ListViewSolicitudCotizacion listAdapterCot;
+        List<SolicitudCotizacion> articulos = new List<SolicitudCotizacion>();
+        RecyclerView RecycleView;
+        RecyclerView.LayoutManager layoutManager;
         protected override async void OnCreate(Bundle savedInstanceState) {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.cotizaciones_add);
+
             Android.Support.V7.Widget.Toolbar toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
             SupportActionBar.SetHomeButtonEnabled(true);
@@ -57,11 +64,32 @@ namespace ProveedoresFIME.Resources.layout {
                 }
             }, TaskScheduler.FromCurrentSynchronizationContext())// execute in main/UI thread.
       .ConfigureAwait(false);// Execute API call on background or worker thread.);
+
+            RecycleView = FindViewById<RecyclerView>(Resource.Id.preCotizacion);
+            RecycleView.HasFixedSize=true;
+            layoutManager=new LinearLayoutManager(this);
+            RecycleView.SetLayoutManager(layoutManager);
+            listAdapterCot=new ListViewSolicitudCotizacion(this, articulos, RecycleView, "");
+            RecycleView.SetAdapter(listAdapterCot);
+            Button btnAgregarArt = FindViewById<Button>(Resource.Id.btnAgregarArticulo);
+            btnAgregarArt.Click+=buttonclick;
+        }
+
+        private void buttonclick(object sender, EventArgs e) {
+            EditText cantidad = FindViewById<EditText>(Resource.Id.cantidadSolicitada);
+            articulos.Add(new SolicitudCotizacion {
+                ProveedorId=int.Parse(IDProveedor[(int)spinnerProveedor.SelectedItemId]),
+                ArticuloId=int.Parse(IDArticulo[(int)spinnerArticulo.SelectedItemId]),
+                Cantidad=int.Parse(cantidad.Text),
+                Descripcion=spinnerArticulo.SelectedItem.ToString()
+            });
+            listAdapterCot.NotifyDataSetChanged();
         }
 
         private async void spinnerArticulo_ItemSelectedAsync(object sender, AdapterView.ItemSelectedEventArgs e) {
             //throw new NotImplementedException();
         }
+
 
         private async void spinnerProveedor_ItemSelectedAsync(object sender, AdapterView.ItemSelectedEventArgs e) {
             if (spinnerAdapterArticulo.Count>0) {
@@ -79,19 +107,7 @@ namespace ProveedoresFIME.Resources.layout {
                         });
                         spinnerAdapterArticulo.NotifyDataSetChanged();
                     }
-                }, TaskScheduler.FromCurrentSynchronizationContext()).ConfigureAwait(false);// Execute API call on background or worker thread.
-                                                                                            //           await proveedoresService.GetProveedor(1).ContinueWith(post => {
-                                                                                            //              if (post.IsCompleted&&post.Status==TaskStatus.RanToCompletion) {
-                                                                                            //                  //post.Result.ForEach((Proveedor item) => {
-                                                                                            //                  //    item.Articulos.ToList().ForEach(x => {
-                                                                                            //                  //        spinnerAdapterArticulo.Add(x.Descripcion);
-                                                                                            //                  //        IDArticulo.Add(x.ArticuloId.ToString());
-                                                                                            //                  //    });
-                                                                                            //                  //});
-                                                                                            //                  //spinnerAdapterArticulo.NotifyDataSetChanged();
-                                                                                            //              }
-                                                                                            //          }, TaskScheduler.FromCurrentSynchronizationContext())// execute in main/UI thread.
-                                                                                            //.ConfigureAwait(false);// Execute API call on background or worker thread.);
+                }, TaskScheduler.FromCurrentSynchronizationContext()).ConfigureAwait(false);
             } catch (Exception) {
 
                 throw;

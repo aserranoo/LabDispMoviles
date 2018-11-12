@@ -47,8 +47,8 @@
 		android:layout_marginLeft="25.0dp"
 		android:layout_marginRight="35dp"
 		android:digits="0123456789abcdefghijklmnopqrstuvwxyz"
-		android:textAlignment="left"
-		android:text="2" />
+		android:textAlignment="textStart"
+		android:text="1" />
 	<Button
 		android:text="Agregar"
 		android:layout_width="105.3dp"
@@ -57,7 +57,7 @@
 		android:layout_marginLeft="197.3dp"
 		android:layout_marginRight="0.0dp"
 		android:layout_marginTop="0.0dp" />
-	<ListView
+	<android.support.v7.widget.RecyclerView
 		android:minWidth="25px"
 		android:minHeight="25px"
 		android:layout_width="match_parent"

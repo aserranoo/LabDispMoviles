@@ -72,6 +72,7 @@
     <Compile Include="Activities\cotizacion_add.cs" />
     <Compile Include="Adapters\Expandable_ProveedorArticulo.cs" />
     <Compile Include="Adapters\ListViewCustomAdapter.cs" />
+    <Compile Include="Adapters\ListViewSolicitudCotizacion.cs" />
     <Compile Include="Adapters\ProveedorViewHolder.cs" />
     <Compile Include="Data\IArticulosService.cs" />
     <Compile Include="Data\IProveedorService.cs" />
@@ -80,11 +81,13 @@
     <Compile Include="Models\Articulo.cs" />
     <Compile Include="Models\ArticuloParcelable.cs" />
     <Compile Include="Models\ArticuloSave.cs" />
+    <Compile Include="Models\Cotizacion.cs" />
     <Compile Include="Models\Parceables\GenericParcelableCreator.cs" />
     <Compile Include="Models\Proveedor.cs" />
     <Compile Include="Models\ProveedorParcelable.cs" />
     <Compile Include="Activities\proveedores_add.cs" />
     <Compile Include="Activities\proveedores_main.cs" />
+    <Compile Include="Models\SolicitudCotizacion.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -222,6 +225,11 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\listItem_ProveedorArticulo.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\solicitudCotizacion.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

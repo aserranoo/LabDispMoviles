@@ -11,6 +11,7 @@ using Android.Views;
 using Android.Widget;
 using Java.Interop;
 using ProveedoresFIME.models.Parceables;
+using ProveedoresFIME.Models;
 
 namespace ProveedoresFIME.models {
     public class ProveedorParcelable : Java.Lang.Object, IParcelable {

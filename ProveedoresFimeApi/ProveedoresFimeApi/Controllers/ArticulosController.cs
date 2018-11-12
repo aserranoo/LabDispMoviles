@@ -7,39 +7,32 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProveedoresFimeApi.Models;
 
-namespace ProveedoresFimeApi.Controllers
-{
+namespace ProveedoresFimeApi.Controllers {
     [Route("api/[controller]")]
     [ApiController]
-    public class ArticulosController : ControllerBase
-    {
+    public class ArticulosController : ControllerBase {
         private readonly labdispmovilesContext _context;
 
-        public ArticulosController(labdispmovilesContext context)
-        {
-            _context = context;
+        public ArticulosController(labdispmovilesContext context) {
+            _context=context;
         }
 
         // GET: api/Articulos
         [HttpGet]
-        public IEnumerable<Articulos> GetArticulos()
-        {
+        public IEnumerable<Articulos> GetArticulos() {
             return _context.Articulos;
         }
 
         // GET: api/Articulos/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetArticulos([FromRoute] int id)
-        {
-            if (!ModelState.IsValid)
-            {
+        public async Task<IActionResult> GetArticulos([FromRoute] int id) {
+            if (!ModelState.IsValid) {
                 return BadRequest(ModelState);
             }
 
             var articulos = await _context.Articulos.FindAsync(id);
 
-            if (articulos == null)
-            {
+            if (articulos==null) {
                 return NotFound();
             }
 
@@ -48,32 +41,23 @@ namespace ProveedoresFimeApi.Controllers
 
         // PUT: api/Articulos/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutArticulos([FromRoute] int id, [FromBody] Articulos articulos)
-        {
-            if (!ModelState.IsValid)
-            {
+        public async Task<IActionResult> PutArticulos([FromRoute] int id, [FromBody] Articulos articulos) {
+            if (!ModelState.IsValid) {
                 return BadRequest(ModelState);
             }
 
-            if (id != articulos.ArticuloId)
-            {
+            if (id!=articulos.ArticuloId) {
                 return BadRequest();
             }
 
-            _context.Entry(articulos).State = EntityState.Modified;
+            _context.Entry(articulos).State=EntityState.Modified;
 
-            try
-            {
+            try {
                 await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ArticulosExists(id))
-                {
+            } catch (DbUpdateConcurrencyException) {
+                if (!ArticulosExists(id)) {
                     return NotFound();
-                }
-                else
-                {
+                } else {
                     throw;
                 }
             }
@@ -83,10 +67,8 @@ namespace ProveedoresFimeApi.Controllers
 
         // POST: api/Articulos
         [HttpPost]
-        public async Task<IActionResult> PostArticulos([FromBody] Articulos articulos)
-        {
-            if (!ModelState.IsValid)
-            {
+        public async Task<IActionResult> PostArticulos([FromBody] Articulos articulos) {
+            if (!ModelState.IsValid) {
                 return BadRequest(ModelState);
             }
 
@@ -98,16 +80,13 @@ namespace ProveedoresFimeApi.Controllers
 
         // DELETE: api/Articulos/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteArticulos([FromRoute] int id)
-        {
-            if (!ModelState.IsValid)
-            {
+        public async Task<IActionResult> DeleteArticulos([FromRoute] int id) {
+            if (!ModelState.IsValid) {
                 return BadRequest(ModelState);
             }
 
             var articulos = await _context.Articulos.FindAsync(id);
-            if (articulos == null)
-            {
+            if (articulos==null) {
                 return NotFound();
             }
 
@@ -117,9 +96,8 @@ namespace ProveedoresFimeApi.Controllers
             return Ok(articulos);
         }
 
-        private bool ArticulosExists(int id)
-        {
-            return _context.Articulos.Any(e => e.ArticuloId == id);
+        private bool ArticulosExists(int id) {
+            return _context.Articulos.Any(e => e.ArticuloId==id);
         }
     }
 }

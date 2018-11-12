@@ -56,6 +56,7 @@
     <BundleAssemblies>false</BundleAssemblies>
     <AndroidLinkSkip>
     </AndroidLinkSkip>
+    <AndroidEnableMultiDex>true</AndroidEnableMultiDex>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android.Export" />
@@ -66,6 +67,10 @@
     <Reference Include="Mono.Android" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Activities\articulos_add.cs" />
+    <Compile Include="Activities\articulos_main.cs" />
+    <Compile Include="Activities\cotizacion_add.cs" />
+    <Compile Include="Adapters\Expandable_ProveedorArticulo.cs" />
     <Compile Include="Adapters\ListViewCustomAdapter.cs" />
     <Compile Include="Adapters\ProveedorViewHolder.cs" />
     <Compile Include="Data\IArticulosService.cs" />
@@ -73,6 +78,8 @@
     <Compile Include="Data\NetworkService.cs" />
     <Compile Include="Activities\MainActivity.cs" />
     <Compile Include="Models\Articulo.cs" />
+    <Compile Include="Models\ArticuloParcelable.cs" />
+    <Compile Include="Models\ArticuloSave.cs" />
     <Compile Include="Models\Parceables\GenericParcelableCreator.cs" />
     <Compile Include="Models\Proveedor.cs" />
     <Compile Include="Models\ProveedorParcelable.cs" />
@@ -87,18 +94,6 @@
     <None Include="Assets\AboutAssets.txt" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\activity_main.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-    <AndroidResource Include="Resources\layout\app_bar_main.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-    <AndroidResource Include="Resources\layout\content_main.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-    <AndroidResource Include="Resources\layout\nav_header_main.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
     <AndroidResource Include="Resources\values\colors.xml" />
     <AndroidResource Include="Resources\values\dimens.xml" />
     <AndroidResource Include="Resources\values\drawables.xml" />
@@ -173,17 +168,6 @@
     <AndroidResource Include="Resources\drawable-v24\ic_menu_person_add.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\proveedores_main.axml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-    </AndroidResource>
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\layout\proveedores_add.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_add_black.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -199,11 +183,48 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\proveedorRow.axml">
+    <AndroidResource Include="Resources\layout\activity_main.axml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\app_bar_main.axml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\articuloRow.axml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\articulos_add.axml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\articulos_main.axml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\content_main.axml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\cotizaciones_add.axml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\nav_header_main.axml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\proveedores_add.axml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\proveedores_main.axml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\proveedorRow.axml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\listGroup_ProveedorArticulos.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\listItem_ProveedorArticulo.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
     Other similar extension points exist, see Microsoft.Common.targets.

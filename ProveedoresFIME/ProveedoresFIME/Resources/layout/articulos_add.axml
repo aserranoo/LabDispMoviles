@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+    android:padding="10dip"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+	<LinearLayout
+		android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+		android:id="@+id/articulos_add"
+		android:layout_below="@id/toolbar">
+		<TextView
+			android:text="Elegir Proveedor"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="25dp"
+			android:layout_marginLeft="20dp"
+			android:layout_marginRight="30dp"
+			android:id="@+id/proveedorLabel" />
+		<Spinner
+			android:id="@+id/spinner"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="20dp"
+			android:layout_marginRight="30dp"
+			android:layout_marginTop="10.0dp"/>
+		<TextView
+			android:text="Descripción"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:id="@+id/descripcionArticuloLabel"
+			android:layout_marginLeft="20.0dp"
+			android:layout_marginTop="10.0dp" 
+			android:layout_marginRight="30dp"/>
+		<android.support.design.widget.TextInputEditText
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="20.0dp"
+			android:layout_marginRight="30dp"
+			android:imeOptions="actionGo"
+			android:inputType="text"
+			android:id="@+id/descripcionArticulo" />
+		<Button
+			android:text="Guardar"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:id="@+id/btnGuardarArticulo" 
+			android:layout_marginLeft="20dp"
+			android:layout_marginRight="30dp"
+			android:layout_marginTop="10.0dp" />
+	</LinearLayout>
+</RelativeLayout>

@@ -25,10 +25,11 @@ namespace ProveedoresFimeApi {
         public void ConfigureServices(IServiceCollection services) {
             services.AddDbContext<labdispmovilesContext>(option => { option.UseSqlServer(Configuration.GetConnectionString("LabDispMovilesDB")); });
             services.AddScoped<DbContext, labdispmovilesContext>();
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
+                .AddJsonOptions(options => options.SerializerSettings.ReferenceLoopHandling=Newtonsoft.Json.ReferenceLoopHandling.Ignore);
         }
 
-        
+
         public void Configure(IApplicationBuilder app, IHostingEnvironment env) {
             if (env.IsDevelopment()) {
                 app.UseDeveloperExceptionPage();

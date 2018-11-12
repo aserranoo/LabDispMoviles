@@ -13,9 +13,10 @@ using Android.Widget;
 using Java.IO;
 using Newtonsoft.Json;
 using ProveedoresFIME.models;
+using ProveedoresFIME.Models;
 
 namespace ProveedoresFIME.Resources.layout {
-    [Activity(Label = "Agregar Proveedores")]
+    [Activity(Label = "Agregar Proveedor")]
     public class proveedores_add : AppCompatActivity {
         protected override void OnCreate(Bundle savedInstanceState) {
             base.OnCreate(savedInstanceState);
@@ -40,7 +41,6 @@ namespace ProveedoresFIME.Resources.layout {
                     Telefono=Telefono.Text,
                     Correo=Correo.Text
                 };
-                Toast.MakeText(this, "Method was called", ToastLength.Short).Show();
                 Intent myIntent = new Intent(this, typeof(proveedores_main));
                 ProveedorParcelable parcelable = new ProveedorParcelable {
                     Proveedor=NewProveedor

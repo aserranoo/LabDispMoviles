@@ -22,9 +22,16 @@ namespace ProveedoresFimeApi.Controllers
 
         // GET: api/Proveedores
         [HttpGet]
-        public IEnumerable<Proveedores> GetProveedores()
+        public async Task<IEnumerable<Proveedores>> GetProveedores()
         {
-            return _context.Proveedores;
+            return await _context.Proveedores.ToListAsync();
+        }
+
+        [HttpGet]
+        [Route("[action]")]
+        public async Task<IEnumerable<Proveedores>> GetProveedoresArticulos() {
+            var proveedores =_context.Proveedores.Include(x => x.Articulos).AsQueryable().AsNoTracking();
+            return await proveedores.ToListAsync();
         }
 
         // GET: api/Proveedores/5
@@ -36,7 +43,7 @@ namespace ProveedoresFimeApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            var proveedores = await _context.Proveedores.FindAsync(id);
+            var proveedores = await _context.Proveedores.Include(x=>x.Articulos).FirstOrDefaultAsync(i=>i.ProveedorId==id);
 
             if (proveedores == null)
             {

@@ -10,6 +10,7 @@ using Android.Support.V4.Widget;
 using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
+using ProveedoresFIME.Resources.layout;
 
 namespace ProveedoresFIME {
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar", MainLauncher = true)]
@@ -20,8 +21,8 @@ namespace ProveedoresFIME {
             Android.Support.V7.Widget.Toolbar toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
             SetSupportActionBar(toolbar);
 
-            //FloatingActionButton fab = FindViewById<FloatingActionButton>(Resource.Id.fab);
-            //fab.Click+=FabOnClick;
+            FloatingActionButton fab = FindViewById<FloatingActionButton>(Resource.Id.fab);
+            fab.Click+=FabOnClick;
 
             DrawerLayout drawer = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
             ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, Resource.String.navigation_drawer_open, Resource.String.navigation_drawer_close);
@@ -56,20 +57,17 @@ namespace ProveedoresFIME {
         }
 
         private void FabOnClick(object sender, EventArgs eventArgs) {
-            View view = (View)sender;
-            Snackbar.Make(view, "Replace with your own action", Snackbar.LengthLong)
-                .SetAction("Action", (Android.Views.View.IOnClickListener)null).Show();
+            var myIntent = new Intent(this, typeof(cotizacion_add));
+            StartActivityForResult(myIntent, 0);
         }
 
         public bool OnNavigationItemSelected(IMenuItem item) {
             int id = item.ItemId; 
 
             if (id==Resource.Id.nav_person_add) {
-                StartActivity(typeof(Resources.layout.proveedores_main));
-            //} else if (id==Resource.Id.nav_cotizaciones) {
-
+                StartActivity(typeof(proveedores_main));
             } else if (id==Resource.Id.nav_articulos) {
-
+                StartActivity(typeof(articulos_main));
             }
 
             DrawerLayout drawer = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);

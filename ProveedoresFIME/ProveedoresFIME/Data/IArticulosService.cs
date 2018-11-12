@@ -11,7 +11,6 @@ using Android.Views;
 using Android.Widget;
 using ProveedoresFIME.Models;
 using Refit;
-//using ProveedoresFimeApi.Models;
 
 namespace ProveedoresFIME.Data {
     public interface IArticulosService {

@@ -10,7 +10,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 
-namespace ProveedoresFIME.models {
+namespace ProveedoresFIME.Models {
     public class Proveedor {
         public int ProveedorId { get; set; }
         public string Nombre { get; set; }
@@ -18,5 +18,6 @@ namespace ProveedoresFIME.models {
         public string Telefono { get; set; }
         public string Rfc { get; set; }
         public string Correo { get; set; }
+        public ICollection<Articulo> Articulos { get; set; }
     }
 }

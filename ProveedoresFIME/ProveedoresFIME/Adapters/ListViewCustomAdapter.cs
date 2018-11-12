@@ -11,6 +11,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using ProveedoresFIME.models;
+using ProveedoresFIME.Models;
 using static Android.Support.V7.Widget.RecyclerView;
 
 namespace ProveedoresFIME.Adapters {
@@ -53,7 +54,6 @@ namespace ProveedoresFIME.Adapters {
                 holder=new ProveedorViewHolder();
                 view=LayoutInflater.From(parent.Context).Inflate(Resource.Layout.proveedorRow, parent, false);
 
-                //var photo = view.FindViewById<ImageView>(Resource.Id.photoImageView);
                 holder.Nombre = view.FindViewById<TextView>(Resource.Id.nombreTextView);
                 holder.Telefono = view.FindViewById<TextView>(Resource.Id.telefonoTextView);
 
@@ -63,30 +63,8 @@ namespace ProveedoresFIME.Adapters {
             }
 
             var tempServiceItem = Proveedores[position];
-            //var tempServiceItem = new ServiceItem();
             holder.Nombre.Text=tempServiceItem.Nombre;
             holder.Telefono.Text=tempServiceItem.Telefono;
-            //holder.Price.Text=String.Format("{0:C}", tempServiceItem.Price);
-
-            //holder..Click+=(object sender, EventArgs e)=&gt;
-            //{
-            //    ServiceItems.RemoveAt(position);
-            //    NotifyDataSetChanged();
-            //};
-            //holder.EditButton.Click+=(object sender, EventArgs e)=&gt;
-            //{
-            //    //Todo - implement edit Service
-            //};
-
-
-            //var holder = (ViewHolder)view.Tag;
-
-
-            //holder.Photo.SetImageDrawable(ImageManager.Get(parent.Context, users[position].ImageUrl));
-            //holder.Name.Text=users[position].Name;
-            //holder.Department.Text=users[position].Department;
-
-
             return view;
 
         }

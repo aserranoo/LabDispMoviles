@@ -10,6 +10,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using ProveedoresFIME.models;
+using ProveedoresFIME.Models;
 using Refit;
 
 namespace ProveedoresFIME.Data {
@@ -19,6 +20,12 @@ namespace ProveedoresFIME.Data {
 
         [Post("/Proveedores/")]
         Task SaveTodoItemAsync(Proveedor item, bool isNewItem);
+
+        [Get("/Proveedores/GetProveedoresArticulos/")]
+        Task<List<Proveedor>> GetProveedoresArticulos();
+
+        [Get("/Proveedores/{id}")]
+        Task<Proveedor> GetProveedor([AliasAs("id")] int id);
 
         Task DeleteTodoItemAsync(string id);
     }

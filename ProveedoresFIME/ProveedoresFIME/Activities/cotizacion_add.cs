@@ -51,8 +51,6 @@ namespace ProveedoresFIME.Resources.layout {
 
             spinnerAdapterArticulo.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
             spinnerArticulo.Adapter=spinnerAdapterArticulo;
-            spinnerArticulo.ItemSelected+=spinnerArticulo_ItemSelectedAsync;
-
 
             var proveedoresService = NetworkService.GetProveedoresService();
             await proveedoresService.RefreshDataAsync().ContinueWith(post => {
@@ -101,7 +99,7 @@ namespace ProveedoresFIME.Resources.layout {
             };
             try {
                 cotizacion = await NetworkService.GetCotizacionService().SaveTodoItemAsync(cotizacion, true);
-            } catch (Exception e) {
+            } catch (Exception) {
 
                 throw;
             }
@@ -128,11 +126,6 @@ namespace ProveedoresFIME.Resources.layout {
             });
             listAdapterCot.NotifyDataSetChanged();
         }
-
-        private async void spinnerArticulo_ItemSelectedAsync(object sender, AdapterView.ItemSelectedEventArgs e) {
-            //throw new NotImplementedException();
-        }
-
 
         private async void spinnerProveedor_ItemSelectedAsync(object sender, AdapterView.ItemSelectedEventArgs e) {
             if (spinnerAdapterArticulo.Count>0) {

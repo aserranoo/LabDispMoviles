@@ -26,7 +26,7 @@ namespace ProveedoresFIME.Data {
 
         [Get("/Proveedores/{id}")]
         Task<Proveedor> GetProveedor([AliasAs("id")] int id);
-
+        [Delete("/Proveedores/")]
         Task DeleteTodoItemAsync(string id);
     }
 }

@@ -31,7 +31,6 @@ namespace ProveedoresFIME.Models {
         public static GenericParcelableCreator<ArticuloParcelable> GetCreator() {
             return _creator;
         }
-        public new IntPtr Handle;
 
         public int DescribeContents() {
             return 0;

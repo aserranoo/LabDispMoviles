@@ -29,7 +29,6 @@ namespace SendgridMailApp.Controllers {
             var subject = "Solicitud Cotización ";
             var htmlContent = "<strong>Se solicito una cotización con el número"+id.ToString()+"</strong>\n";
             htmlContent+="<a href=http://labdispweb.azurewebsites.net/id/"+id.ToString()+">Haz Click Aqui!</a>.<br> ";
-            var displayRecipients = false; // set this to true if you want recipients to see each others mail id 
             var msg = MailHelper.CreateSingleEmailToMultipleRecipients(from, tos, subject, "", htmlContent, false);
             var response = await client.SendEmailAsync(msg);
         }

@@ -19,7 +19,7 @@ namespace ProveedoresFIME.Data {
 
         [Post("/Articulos/")]
         Task SaveTodoItemAsync(Articulo item, bool isNewItem);
-
+        [Delete("/Articulos/")]
         Task DeleteTodoItemAsync(string id);
     }
 }

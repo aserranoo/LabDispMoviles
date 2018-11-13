@@ -70,17 +70,24 @@
     <Compile Include="Activities\articulos_add.cs" />
     <Compile Include="Activities\articulos_main.cs" />
     <Compile Include="Activities\cotizacion_add.cs" />
+    <Compile Include="Activities\solicitudDetalle.cs" />
     <Compile Include="Adapters\Expandable_ProveedorArticulo.cs" />
+    <Compile Include="Adapters\IItemClickListener.cs" />
+    <Compile Include="Adapters\ListViewCotizacionAdapter.cs" />
     <Compile Include="Adapters\ListViewCustomAdapter.cs" />
+    <Compile Include="Adapters\ListViewDetalleSolicitudAdapter.cs" />
     <Compile Include="Adapters\ListViewSolicitudCotizacion.cs" />
     <Compile Include="Adapters\ProveedorViewHolder.cs" />
     <Compile Include="Data\IArticulosService.cs" />
+    <Compile Include="Data\ICotizacionService.cs" />
     <Compile Include="Data\IProveedorService.cs" />
+    <Compile Include="Data\ISolicitudCotizacionService.cs" />
     <Compile Include="Data\NetworkService.cs" />
     <Compile Include="Activities\MainActivity.cs" />
     <Compile Include="Models\Articulo.cs" />
     <Compile Include="Models\ArticuloParcelable.cs" />
     <Compile Include="Models\ArticuloSave.cs" />
+    <Compile Include="Models\CatEstatus.cs" />
     <Compile Include="Models\Cotizacion.cs" />
     <Compile Include="Models\Parceables\GenericParcelableCreator.cs" />
     <Compile Include="Models\Proveedor.cs" />
@@ -230,6 +237,33 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\solicitudCotizacion.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_done_black.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-v21\ic_done_black.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-v24\ic_done_black.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\menu\menu_solicitud.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\cotizacionRow.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\solicitudDetalle.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\detalleRow.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

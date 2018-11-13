@@ -17,12 +17,8 @@ namespace ProveedoresFIME.Models {
         public int ArticuloId { get; set; }
         public int Cantidad { get; set; }
         public string Descripcion { get; set; }
-        public SolicitudCotizacion() {
-            this.CotizacionId=0;
-            this.ProveedorId=0;
-            this.ArticuloId=0;
-            this.Cantidad=0;
-            this.Descripcion="";
-        }
+        public Articulo Articulo { get; set; }
+        public Cotizacion Cotizacion { get; set; }
+        public Proveedor Proveedor { get; set; }
     }
 }

@@ -14,6 +14,7 @@ using Android.Widget;
 using ProveedoresFIME.Adapters;
 using ProveedoresFIME.Data;
 using ProveedoresFIME.Models;
+using Newtonsoft.Json;
 
 namespace ProveedoresFIME.Resources.layout {
     [Activity(Label = "Solicitar Cotización")]
@@ -65,7 +66,7 @@ namespace ProveedoresFIME.Resources.layout {
             }, TaskScheduler.FromCurrentSynchronizationContext())// execute in main/UI thread.
       .ConfigureAwait(false);// Execute API call on background or worker thread.);
 
-            RecycleView = FindViewById<RecyclerView>(Resource.Id.preCotizacion);
+            RecycleView=FindViewById<RecyclerView>(Resource.Id.preCotizacion);
             RecycleView.HasFixedSize=true;
             layoutManager=new LinearLayoutManager(this);
             RecycleView.SetLayoutManager(layoutManager);
@@ -73,6 +74,47 @@ namespace ProveedoresFIME.Resources.layout {
             RecycleView.SetAdapter(listAdapterCot);
             Button btnAgregarArt = FindViewById<Button>(Resource.Id.btnAgregarArticulo);
             btnAgregarArt.Click+=buttonclick;
+        }
+        public override bool OnCreateOptionsMenu(IMenu menu) {
+            MenuInflater.Inflate(Resource.Menu.menu_solicitud, menu);
+            return true;
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item) {
+            switch (item.ItemId) {
+                case Android.Resource.Id.Home:
+                    Finish();
+                    return true;
+                case Resource.Id.saveArticulo:
+                    SaveCotizacion();
+                    return true;
+                default:
+                    return base.OnOptionsItemSelected(item);
+            }
+        }
+
+        private async void SaveCotizacion() {
+            Cotizacion cotizacion = new Cotizacion {
+                ProveedorId=int.Parse(IDProveedor[(int)spinnerProveedor.SelectedItemId]),
+                Fecha=DateTime.Now,
+                EstatusId = 1
+            };
+            try {
+                cotizacion = await NetworkService.GetCotizacionService().SaveTodoItemAsync(cotizacion, true);
+            } catch (Exception e) {
+
+                throw;
+            }
+            foreach (SolicitudCotizacion solicitud in articulos) {
+                solicitud.CotizacionId=cotizacion.CotizacionId;
+                await NetworkService.GetSolicitudCotizacionService().SaveSolicitud(solicitud);
+            }
+            Cotizacion newCot = await NetworkService.GetCotizacionService().GetCotizacion(cotizacion.CotizacionId);
+            Intent myIntent = new Intent(this, typeof(MainActivity));
+            var MySerializedObject = JsonConvert.SerializeObject(newCot);
+            myIntent.PutExtra("Detalle", MySerializedObject);
+            SetResult(Result.Ok, myIntent);
+            Finish();
         }
 
         private void buttonclick(object sender, EventArgs e) {

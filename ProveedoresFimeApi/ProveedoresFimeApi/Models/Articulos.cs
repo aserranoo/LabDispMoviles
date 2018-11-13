@@ -15,7 +15,9 @@ namespace ProveedoresFimeApi.Models
         public string Descripcion { get; set; }
         public bool? Status { get; set; }
 
+        public Articulos Articulo { get; set; }
         public Proveedores Proveedor { get; set; }
+        public Articulos InverseArticulo { get; set; }
         public ICollection<SolicitudArticulos> SolicitudArticulos { get; set; }
     }
 }

@@ -24,7 +24,7 @@ namespace ProveedoresFimeApi.Controllers
         [HttpGet]
         public IEnumerable<Cotizaciones> GetCotizaciones()
         {
-            return _context.Cotizaciones;
+            return _context.Cotizaciones.Include(x=>x.Estatus).Include(x=>x.Proveedor).Include(x=>x.SolicitudArticulos).Include(x=>x.Proveedor.Articulos);
         }
 
         // GET: api/Cotizaciones/5
@@ -36,7 +36,7 @@ namespace ProveedoresFimeApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            var cotizaciones = await _context.Cotizaciones.FindAsync(id);
+            var cotizaciones = await _context.Cotizaciones.Include(x => x.Estatus).Include(x => x.Proveedor).Include(x => x.SolicitudArticulos).Include(x => x.Proveedor.Articulos).FirstOrDefaultAsync(i=>i.CotizacionId==id);
 
             if (cotizaciones == null)
             {

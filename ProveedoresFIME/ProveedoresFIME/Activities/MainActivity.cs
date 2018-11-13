@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Android;
 using Android.App;
 using Android.Content;
@@ -8,14 +10,24 @@ using Android.Support.Design.Widget;
 using Android.Support.V4.View;
 using Android.Support.V4.Widget;
 using Android.Support.V7.App;
+using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
+using Newtonsoft.Json;
+using ProveedoresFIME.Adapters;
+using ProveedoresFIME.Data;
+using ProveedoresFIME.Models;
 using ProveedoresFIME.Resources.layout;
 
 namespace ProveedoresFIME {
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar", MainLauncher = true)]
     public class MainActivity : AppCompatActivity, NavigationView.IOnNavigationItemSelectedListener {
-        protected override void OnCreate(Bundle savedInstanceState) {
+        private RecyclerView RecycleView;
+        private LinearLayoutManager layoutManager;
+        private ListViewCotizacionAdapter listAdapterCot;
+        private List<Cotizacion> cotizacines = new List<Cotizacion>();
+
+        protected override async void OnCreate(Bundle savedInstanceState) {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.activity_main);
             Android.Support.V7.Widget.Toolbar toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
@@ -30,7 +42,24 @@ namespace ProveedoresFIME {
             toggle.SyncState();
 
             NavigationView navigationView = FindViewById<NavigationView>(Resource.Id.nav_view);
-            navigationView.SetNavigationItemSelectedListener(this);            
+            navigationView.SetNavigationItemSelectedListener(this);
+
+            RecycleView=FindViewById<RecyclerView>(Resource.Id.cotizaciones);
+            RecycleView.HasFixedSize=true;
+            layoutManager=new LinearLayoutManager(this);
+            RecycleView.SetLayoutManager(layoutManager);
+            listAdapterCot=new ListViewCotizacionAdapter(this, cotizacines, RecycleView);
+            RecycleView.SetAdapter(listAdapterCot);
+
+            await NetworkService.GetCotizacionService().RefreshDataAsync().ContinueWith(post => {
+                if (post.IsCompleted&&post.Status==TaskStatus.RanToCompletion) {
+                    post.Result.ForEach((Cotizacion item) => {
+                        cotizacines.Add(item);
+                    });
+                    listAdapterCot.NotifyDataSetChanged();
+                }
+            }, TaskScheduler.FromCurrentSynchronizationContext())// execute in main/UI thread.
+      .ConfigureAwait(true);// Execute API call on background or worker thread
         }
 
         public override void OnBackPressed() {
@@ -62,7 +91,7 @@ namespace ProveedoresFIME {
         }
 
         public bool OnNavigationItemSelected(IMenuItem item) {
-            int id = item.ItemId; 
+            int id = item.ItemId;
 
             if (id==Resource.Id.nav_person_add) {
                 StartActivity(typeof(proveedores_main));
@@ -73,6 +102,13 @@ namespace ProveedoresFIME {
             DrawerLayout drawer = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
             drawer.CloseDrawer(GravityCompat.Start);
             return true;
+        }
+        protected override void OnActivityResult(int requestCode, Result resultCode, Intent data) {
+            Cotizacion DetalleArticulo = new Cotizacion();
+            var DetalleArticuloStr = data.GetStringExtra("Detalle");
+            DetalleArticulo = JsonConvert.DeserializeObject<Cotizacion>(DetalleArticuloStr);
+            cotizacines.Add(DetalleArticulo);
+            listAdapterCot.NotifyDataSetChanged();
         }
     }
 }

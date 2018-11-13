@@ -14,11 +14,10 @@ namespace ProveedoresFIME.Models {
     public class Cotizacion {
         public int CotizacionId { get; set; }
         public int ProveedorId { get; set; }
+        public int EstatusId { get; set; }
         public DateTime Fecha { get; set; }
-        public Cotizacion() {
-            this.CotizacionId=0;
-            this.ProveedorId=0;
-            this.Fecha=new DateTime();
-        }
+        public CatEstatus Estatus { get; set; }
+        public Proveedor Proveedor { get; set; }
+        public ICollection<SolicitudCotizacion> SolicitudArticulos { get; set; }
     }
 }

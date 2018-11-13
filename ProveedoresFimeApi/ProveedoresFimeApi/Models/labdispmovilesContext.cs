@@ -16,6 +16,7 @@ namespace ProveedoresFimeApi.Models
         }
 
         public virtual DbSet<Articulos> Articulos { get; set; }
+        public virtual DbSet<CatEstatus> CatEstatus { get; set; }
         public virtual DbSet<Cotizaciones> Cotizaciones { get; set; }
         public virtual DbSet<Proveedores> Proveedores { get; set; }
         public virtual DbSet<SolicitudArticulos> SolicitudArticulos { get; set; }
@@ -35,7 +36,15 @@ namespace ProveedoresFimeApi.Models
             {
                 entity.HasKey(e => e.ArticuloId);
 
+                entity.Property(e => e.ArticuloId).ValueGeneratedOnAdd();
+
                 entity.Property(e => e.Descripcion).HasMaxLength(50);
+
+                entity.HasOne(d => d.Articulo)
+                    .WithOne(p => p.InverseArticulo)
+                    .HasForeignKey<Articulos>(d => d.ArticuloId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Articulos_Articulos");
 
                 entity.HasOne(d => d.Proveedor)
                     .WithMany(p => p.Articulos)
@@ -43,13 +52,28 @@ namespace ProveedoresFimeApi.Models
                     .HasConstraintName("FK_Articulos_Proveedores");
             });
 
+            modelBuilder.Entity<CatEstatus>(entity =>
+            {
+                entity.HasKey(e => e.EstatusId);
+
+                entity.ToTable("Cat_Estatus");
+
+                entity.Property(e => e.Descipcion)
+                    .IsRequired()
+                    .HasMaxLength(50);
+            });
+
             modelBuilder.Entity<Cotizaciones>(entity =>
             {
                 entity.HasKey(e => e.CotizacionId);
 
-                entity.Property(e => e.CotizacionId).ValueGeneratedNever();
-
                 entity.Property(e => e.Fecha).HasColumnType("datetime");
+
+                entity.HasOne(d => d.Estatus)
+                    .WithMany(p => p.Cotizaciones)
+                    .HasForeignKey(d => d.EstatusId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Cotizaciones_Cat_Estatus");
 
                 entity.HasOne(d => d.Proveedor)
                     .WithMany(p => p.Cotizaciones)
@@ -79,25 +103,23 @@ namespace ProveedoresFimeApi.Models
             {
                 entity.HasKey(e => e.TranId);
 
-                entity.Property(e => e.TranId).ValueGeneratedNever();
-
                 entity.HasOne(d => d.Articulo)
                     .WithMany(p => p.SolicitudArticulos)
                     .HasForeignKey(d => d.ArticuloId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Table_1_Articulos");
+                    .HasConstraintName("FK_SolicitudArticulos_Articulos");
 
                 entity.HasOne(d => d.Cotizacion)
                     .WithMany(p => p.SolicitudArticulos)
                     .HasForeignKey(d => d.CotizacionId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Table_1_Cotizaciones");
+                    .HasConstraintName("FK_SolicitudArticulos_Cotizaciones");
 
                 entity.HasOne(d => d.Proveedor)
                     .WithMany(p => p.SolicitudArticulos)
                     .HasForeignKey(d => d.ProveedorId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Table_1_Proveedores");
+                    .HasConstraintName("FK_SolicitudArticulos_Proveedores");
             });
         }
     }

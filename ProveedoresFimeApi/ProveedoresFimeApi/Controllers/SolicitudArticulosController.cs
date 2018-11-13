@@ -81,6 +81,14 @@ namespace ProveedoresFimeApi.Controllers
             return NoContent();
         }
 
+        [HttpPost]
+        [Route("[action]")]
+        public async Task<IActionResult>Collect([FromBody] string content) {
+            if (!ModelState.IsValid) {
+                return BadRequest(ModelState);
+            }
+            return CreatedAtAction("GetSolicitudArticulos", "");
+        }
         // POST: api/SolicitudArticulos
         [HttpPost]
         public async Task<IActionResult> PostSolicitudArticulos([FromBody] SolicitudArticulos solicitudArticulos)

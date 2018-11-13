@@ -19,5 +19,7 @@ namespace ProveedoresFIME.Models {
         public string Rfc { get; set; }
         public string Correo { get; set; }
         public ICollection<Articulo> Articulos { get; set; }
+        public ICollection<Cotizacion> Cotizaciones { get; set; }
+        public ICollection<SolicitudCotizacion> SolicitudArticulos { get; set; }
     }
 }

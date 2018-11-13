@@ -17,6 +17,8 @@ namespace ProveedoresFIME.Data {
         public static IProveedorService ProveedoresService { get; set; }
         public static ICotizacionService CotizacionService { get; set; }
         public static ISolicitudCotizacionService SolicitudCotizacionService { get; set; }
+        public static INotificationService NotificationService{ get; set; }
+
         public static string baseUrl = "http://labdispmovil.azurewebsites.net/api/";
 
         public static IArticulosService GetArticulosService() {
@@ -36,6 +38,10 @@ namespace ProveedoresFIME.Data {
         public static ISolicitudCotizacionService GetSolicitudCotizacionService() {
             SolicitudCotizacionService=RestService.For<ISolicitudCotizacionService>(baseUrl);
             return SolicitudCotizacionService;
+        }
+        public static INotificationService GetNotificationService() {
+            NotificationService=RestService.For<INotificationService>(baseUrl);
+            return NotificationService;
         }
     }
 }

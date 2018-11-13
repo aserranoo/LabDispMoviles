@@ -12,6 +12,7 @@ namespace ProveedoresFimeApi.Models
 
         public int CotizacionId { get; set; }
         public int ProveedorId { get; set; }
+        public string PrecioCotizacion { get; set; }
         public int EstatusId { get; set; }
         public DateTime Fecha { get; set; }
 

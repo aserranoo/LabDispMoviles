@@ -48,6 +48,7 @@ namespace ProveedoresFIME.Adapters {
             ListViewCotizacionAdapterViewHolder myHolder = holder as ListViewCotizacionAdapterViewHolder;
             myHolder.NombreSolicitud.Text=cotizacion[position].Proveedor.Nombre;
             myHolder.EstusSolicitud.Text=cotizacion[position].Estatus.Descipcion;
+            myHolder.PrecioCotizacion.Text=cotizacion[position].PrecioCotizacion;
             myHolder.mMainView.Click+=mMainView_Click;
             //if (!myHolder.BtnBorrar.HasOnClickListeners) {
             //    myHolder.BtnBorrar.Click+=delegate {
@@ -63,6 +64,7 @@ namespace ProveedoresFIME.Adapters {
             ListViewCotizacionAdapterViewHolder holder = new ListViewCotizacionAdapterViewHolder(row);
             holder.NombreSolicitud=row.FindViewById<TextView>(Resource.Id.nombreSolicitud);
             holder.EstusSolicitud=row.FindViewById<TextView>(Resource.Id.estatusSolicitud);
+            holder.PrecioCotizacion=row.FindViewById<TextView>(Resource.Id.precioCotizacion);
             return holder;
         }
     }
@@ -70,6 +72,7 @@ namespace ProveedoresFIME.Adapters {
     class ListViewCotizacionAdapterViewHolder : RecyclerView.ViewHolder {
         public TextView NombreSolicitud { get; set; }
         public TextView EstusSolicitud { get; set; }
+        public TextView PrecioCotizacion { get; set; }
         public View mMainView { get; set; }
 
         public ListViewCotizacionAdapterViewHolder(View view) : base(view) {

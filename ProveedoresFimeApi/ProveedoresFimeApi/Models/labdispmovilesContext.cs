@@ -69,6 +69,8 @@ namespace ProveedoresFimeApi.Models
 
                 entity.Property(e => e.Fecha).HasColumnType("datetime");
 
+                entity.Property(e => e.PrecioCotizacion).HasMaxLength(50);
+
                 entity.HasOne(d => d.Estatus)
                     .WithMany(p => p.Cotizaciones)
                     .HasForeignKey(d => d.EstatusId)

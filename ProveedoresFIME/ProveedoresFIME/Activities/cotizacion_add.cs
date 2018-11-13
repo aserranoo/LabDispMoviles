@@ -110,6 +110,7 @@ namespace ProveedoresFIME.Resources.layout {
                 await NetworkService.GetSolicitudCotizacionService().SaveSolicitud(solicitud);
             }
             Cotizacion newCot = await NetworkService.GetCotizacionService().GetCotizacion(cotizacion.CotizacionId);
+            await NetworkService.GetNotificationService().EnviarCorreo(newCot.CotizacionId, newCot.Proveedor.Correo);
             Intent myIntent = new Intent(this, typeof(MainActivity));
             var MySerializedObject = JsonConvert.SerializeObject(newCot);
             myIntent.PutExtra("Detalle", MySerializedObject);

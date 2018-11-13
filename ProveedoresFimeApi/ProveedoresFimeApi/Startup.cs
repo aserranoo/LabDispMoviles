@@ -27,6 +27,7 @@ namespace ProveedoresFimeApi {
             services.AddScoped<DbContext, labdispmovilesContext>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
                 .AddJsonOptions(options => options.SerializerSettings.ReferenceLoopHandling=Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+            services.AddSingleton(Configuration);
         }
 
 

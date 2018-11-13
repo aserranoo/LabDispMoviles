@@ -29,4 +29,20 @@
         android:layout_width="wrap_content"  
         android:layout_height="wrap_content"    
         android:paddingLeft="60dp" />  
+	<TextView  
+        android:id="@+id/estatusSolicitud"  
+        android:layout_below="@id/nombreSolicitud"  
+        android:text="Cotización"  
+        android:textAppearance="?android:attr/textAppearanceSmall"  
+        android:layout_width="wrap_content"  
+        android:layout_height="wrap_content"    
+        android:paddingLeft="170dp" />  
+	<TextView  
+        android:id="@+id/precioCotizacion"  
+        android:layout_below="@id/nombreSolicitud"  
+        android:text="280"  
+        android:textAppearance="?android:attr/textAppearanceSmall"  
+        android:layout_width="wrap_content"  
+        android:layout_height="wrap_content"    
+        android:paddingLeft="280dp" />  
 </RelativeLayout>

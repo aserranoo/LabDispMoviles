@@ -80,6 +80,7 @@
     <Compile Include="Adapters\ProveedorViewHolder.cs" />
     <Compile Include="Data\IArticulosService.cs" />
     <Compile Include="Data\ICotizacionService.cs" />
+    <Compile Include="Data\INotificationService.cs" />
     <Compile Include="Data\IProveedorService.cs" />
     <Compile Include="Data\ISolicitudCotizacionService.cs" />
     <Compile Include="Data\NetworkService.cs" />
